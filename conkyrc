@@ -1,0 +1,102 @@
+conky.config = {
+    alignment = 'top_right',
+    background = false,
+    font = 'Sans:size=8',
+    use_xft = true,
+    xftalpha = 0.9,
+    update_interval = 1,
+    total_run_times = 0,
+    own_window = true,
+    own_window_type = 'normal',
+        own_window_argb_visual = true,
+        own_window_transparent = true,
+    own_window_class = 'conky',
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    double_buffer = true,
+    minimum_height = 1000,
+    minimum_width = 290,
+    maximum_width = 290,
+    draw_shades = true,
+    draw_outline = false,
+    draw_borders = false,
+    draw_graph_borders = true,
+    default_color = 'white',
+    default_shade_color = 'white',
+    default_outline_color = 'white',
+    color1 = 'green',
+    color2 = 'blue',
+    color3 = 'black',
+    color4 = 'yellow',
+    color5 = 'white',
+    gap_x = 1900,
+    gap_y = 1900,
+    alignment = 'bl',
+    no_buffers = true,
+    uppercase = false,
+    cpu_avg_samples = 2,
+    override_utf8_locale = false,
+    uppercase = true,
+}
+
+conky.text = [[
+${color4}${voffset 4}${font Liberation Sans:style=Bold:size=8}CLOCK $stippled_hr${font}${color}
+${voffset -2}${alignc 38}${color1}${font Liberation Sans:style=Bold:size=30}${time %H:%M}${font}${color}
+${voffset 5}${alignc 32}${color1}${font Liberation Sans:style=Bold:size=12}${time %d.%m.%Y}${voffset -6}${color}
+${color4}${voffset 4}${font Liberation Sans:style=Bold:size=8}CPU USAGE $stippled_hr${font}${color}
+Core0@${freq 1} MHz ${alignr}${cpu cpu0}%
+${color}${cpubar cpu0 4 }${color}
+Core1@${freq 2} MHz ${alignr}${cpu cpu1}%
+${color}${cpubar cpu1 4 }${color}
+Core2@${freq 3} MHz ${alignr}${cpu cpu2}%
+${color}${cpubar cpu2 4 }${color}
+Core3@${freq 4} MHz ${alignr}${cpu cpu3}%
+${color}${cpubar cpu3 4 }${color}
+Core4@${freq 5} MHz ${alignr}${cpu cpu4}%
+${color}${cpubar cpu4 4 }${color}
+Core5@${freq 6} MHz ${alignr}${cpu cpu5}%
+${color}${cpubar cpu5 4 }${color}
+Core6@${freq 7} MHz ${alignr}${cpu cpu6}%
+${color}${cpubar cpu6 4 }${color}
+Core7@${freq 8} MHz ${alignr}${cpu cpu7}%
+${color}${cpubar cpu7 4 }${color}
+Core8@${freq 9} MHz ${alignr}${cpu cpu8}%
+${color}${cpubar cpu8 4 }${color}
+Core9@${freq 10} MHz ${alignr}${cpu cpu9}%
+${color}${cpubar cpu9 4 }${color}
+Core10@${freq 11} MHz ${alignr}${cpu cpu10}%
+${color}${cpubar cpu10 4 }${color}
+Core11@${freq 12} MHz ${alignr}${cpu cpu11}%
+${color}${cpubar cpu11 4 }${color}
+${color4}${voffset 4}${font Liberation Sans:style=Bold:size=8}GPU USAGE $stippled_hr${font}${color}
+${goto 32}${voffset 1}GPU Temp:${alignr}${font Liberation Sans:size=8} ${exec nvidia-settings -q [gpu:0]/GPUCoreTemp | grep Attribute | cut -d ' ' -f 6 | cut -c 1-2}°${font}
+${goto 32}GPU Clock:${alignr}${font Liberation Sans:size=8} ${exec nvidia-settings -q [gpu:0]/GPUCurrentClockFreqs -t}${font}MHz
+${goto 32}Video RAM:${alignr}${font Liberation Sans:size=8} ${exec nvidia-settings -q [gpu:0]/VideoRam -t}${font}KB
+${goto 32}Driver Version:${alignr}${font Liberation Sans:size=8} ${exec nvidia-settings -q [gpu:0]/NvidiaDriverVersion -t}${font}
+${color4}${voffset 4}${font Liberation Sans:style=Bold:size=8}MEM USAGE $stippled_hr${font}${color}
+Ram ${alignr}$mem / $memmax ($memperc%)
+${color}${membar 4}${color}
+${color4}${voffset 4}${font Liberation Sans:style=Bold:size=8}PROCESS INFO $stippled_hr${font}${color}
+${color4}Highest CPU $alignr CPU% MEM%${color}
+${top name 1}$alignr${top cpu 1}${top mem 1}
+${top name 2}$alignr${top cpu 2}${top mem 2}
+${top name 3}$alignr${top cpu 3}${top mem 3}
+${color4}Highest MEM $alignr CPU% MEM%${color}
+${top_mem name 1}$alignr${top_mem cpu 1}${top_mem mem 1}
+${top_mem name 2}$alignr${top_mem cpu 2}${top_mem mem 2}
+${top_mem name 3}$alignr${top_mem cpu 3}${top_mem mem 3}
+${color4}${voffset 4}${font Liberation Sans:style=Bold:size=8}NETWORK INFO $stippled_hr${font}${color}
+Eth: ${addr eno1}
+Down ${downspeed eno1}/s ${alignr}Up ${upspeed eno1}/s
+${color3}${downspeedgraph eno1 32,107 ff0000 0000ff} ${alignr}${color3}${upspeedgraph eno1 32,107 ff0000 0000ff}
+${color}Total ${totaldown eno1} ${alignr}Total ${totalup eno1}${color}
+${color4}${voffset 4}${font Liberation Sans:style=Bold:size=8}WEATHER $stippled_hr${font}${color}
+$color5${execi 3600 python3 ~/.conky/weather.py}
+${goto 20}${color5}${font LineAwesomeMod :size=15}V $color5$font${execi 60 cat ~/.cache/weather.txt | grep city | cut -d">" -f2} - ${execi 60 cat ~/.cache/weather.txt | grep country | cut -d">" -f2}
+${voffset 0}${goto 20}${color5}${font LineAwesomeMod :size=50}O $color5${font Roboto Condensed:size=45}${execi 60 cat ~/.cache/weather.txt | grep temp | cut -d">" -f2}°C$color1 $font
+${goto 20}${color5}${font LineAwesomeMod :size=15}O $color5$font ${execi 60 cat ~/.cache/weather.txt | grep description | cut -d">" -f2}
+${goto 20}${color5}${font LineAwesomeMod :size=15}) $color5$font Min: ${execi 60 cat ~/.cache/weather.txt | grep min | cut -d">" -f2}°C  
+${voffset -20}${alignr -63}${color5}${font LineAwesomeMod :size=15}( $color5$font Max: ${execi 60 cat ~/.cache/weather.txt | grep max | cut -d">" -f2}°C
+${goto 20}${color5}${font LineAwesomeMod :size=15}! $color5$font Humidity: ${execi 60 cat ~/.cache/weather.txt | grep humidity | cut -d">" -f2}% 
+${voffset -20}${alignr -112}${color5}${font LineAwesomeMod :size=15}o $color5$font Winds: ${execi 60 cat ~/.cache/weather.txt | grep wind | cut -d">" -f2} m/s
+${goto 20}${color5}${font LineAwesomeMod :size=15}u $color5$font Pressure: ${execi 60 cat ~/.cache/weather.txt | grep pressure | cut -d">" -f2} hPa
+]]
