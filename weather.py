@@ -17,9 +17,9 @@ from pathlib import Path
 ########################################################
 
 UNITY    = "c"
-API_KEY  = "720891e37cf34d7885588e56cac069e6"
-CITY     = "TianJin"
-COUNTRY  = "cn"
+API_KEY  = "your openweahter.org appid"
+CITY     = "city name"
+COUNTRY  = "country name"
 
 ########################################################
 main_url = "http://api.openweathermap.org/data/2.5/weather?"
