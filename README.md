@@ -4,6 +4,8 @@
 
 a simple conky theme include weather and some system useage
   
-### INSTALL
-1.please run chmod +x install.sh
-2.sh install.sh
+# INSTALL
+```Shell session
+1.$chmod +x install.sh
+2.$sh install.sh
+```
