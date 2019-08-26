@@ -1,17 +1,16 @@
 #!/bin/bash
-read -p "please input your user home directory name:" usern
-if [ -e /home/$usern/.font ];then
-  cp ./fonts/* /home/$usern/.fonts
+if [ -e $HOME/.font ];then
+  cp ./fonts/* $HOME/.fonts
 else
-  mkdir -p /home/$usern/.fonts
-  cp ./fonts/* /home/$usern/.fonts
+  mkdir -p $HOME/.fonts
+  cp ./fonts/* $HOME/.fonts
 fi
-if [ -e /home/$usern/.conky ];then
-  cp ./conkyrc /home/$usern/.conky
+if [ -e $HOME/.conky ];then
+  cp ./conkyrc $HOME/.conky
 else
-  mkdir -p /home/$usern/.conky
-  cp ./conkyrc /home/$usern/.conky
+  mkdir -p $HOME/.conky
+  cp ./conkyrc $HOME/.conky
 fi
-if [ ! -e "/home/$usern/.conky/weather.py" ];then
-  cp ./weather.py /home/$usern/.conky
+if [ ! -e "$HOME/.conky/weather.py" ];then
+  cp ./weather.py $HOME/.conky
 fi
