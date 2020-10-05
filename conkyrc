@@ -1,6 +1,6 @@
 conky.config = {
     alignment = 'top_right',
-    background = false,
+    background = true,
     font = 'Liberation Sans:style=Bold:size=8',
     use_xft = true,
     xftalpha = 0.9,
@@ -34,14 +34,14 @@ conky.config = {
     no_buffers = true,
     uppercase = false,
     cpu_avg_samples = 2,
-    override_utf8_locale = true,
+    override_utf8_locale = false,
     uppercase = true,
 }
 
 conky.text = [[
 ${color4}${voffset 4}${font Liberation Sans:style=Bold:size=8}CLOCK $stippled_hr${font}${color}
 ${voffset -2}${alignc 38}${color1}${font Liberation Sans:style=Bold:size=30}${time %H:%M:%S}${font}${color}
-${voffset 3}${alignc 38}${color1}${font Sans:style=Bold:size=12}${time %A}${font}${color}
+${voffset 0}${alignc 38}${color1}${font Liberation Sans:style=Bold:size=12}${if_match "${time %u}" == "1"}Monday$else${if_match "${time %u}" == "2"}Tuesday$else${if_match "${time %u}" == "3"}Wednesday$else${if_match "${time %u}" == "4"}Thursday$else${if_match "${time %u}" == "5"}Friday$else${if_match "${time %u}" == "6"}Saturday$else${if_match "${time %u}" == "7"}Sunday$endif$endif$endif$endif$endif$endif$endif${font}${color} 
 ${voffset 5}${alignc 32}${color1}${font Liberation Sans:style=Bold:size=12}${time %d.%m.%Y}${voffset -6}${color}
 ${color4}${voffset 4}${font Liberation Sans:style=Bold:size=8}CPU USAGE $stippled_hr${font}${color}
 Core0@${freq 1} MHz ${alignr}${cpu cpu0}%
